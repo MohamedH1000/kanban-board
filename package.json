@@ -4,22 +4,36 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:all": "concurrently \"npm run dev\" \"npm run mock-server\"",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "mock-server": "json-server --watch server/db.json --port 4000"
   },
   "dependencies": {
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.575.0",
     "next": "16.1.6",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "tailwind-merge": "^3.5.0"
   },
   "devDependencies": {
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@dnd-kit/utilities": "^3.2.2",
+    "@reduxjs/toolkit": "^2.11.2",
     "@tailwindcss/postcss": "^4",
+    "@tanstack/react-query": "^5.90.21",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "axios": "^1.13.5",
+    "concurrently": "^9.2.1",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
+    "json-server": "^1.0.0-beta.9",
+    "react-redux": "^9.2.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

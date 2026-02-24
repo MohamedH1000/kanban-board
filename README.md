@@ -1,36 +1,114 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kanban Board
+
+A modern task management application with drag-and-drop functionality, built with Next.js, Redux Toolkit, and React Query.
+
+## Features
+
+- 4-column Kanban board (Backlog, In Progress, Review, Done)
+- Create, edit, and delete tasks
+- Drag and drop tasks between columns
+- Real-time search to filter tasks by title or description
+- Data caching with React Query
+- State management with Redux Toolkit
+- Responsive design with Tailwind CSS
+
+## Tech Stack
+
+- **Framework**: Next.js 16
+- **State Management**: Redux Toolkit
+- **Data Fetching & Caching**: React Query
+- **Drag & Drop**: @dnd-kit
+- **Styling**: Tailwind CSS
+- **HTTP Client**: Axios
+- **Mock API**: json-server
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+ installed
+- npm or yarn package manager
+
+### Installation
+
+1. Clone the repository and navigate to the project:
+
+```bash
+cd kanban-board
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Start the mock API server (in a separate terminal):
+
+```bash
+npm run mock-server
+```
+
+The API will be available at `http://localhost:4000`
+
+4. Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+5. Open your browser and navigate to `http://localhost:3000`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/              # Next.js app directory
+├── components/       # React components
+│   ├── board/       # Board layout and header
+│   ├── column/      # Column component
+│   ├── modal/       # Task modal
+│   └── task/        # Task card
+├── hooks/           # Custom hooks
+│   └── useTasks.ts  # React Query hooks
+├── lib/             # Utility functions
+├── store/           # Redux store
+│   ├── tasksSlice.ts
+│   └── hooks.ts
+├── services/        # API services
+│   └── api.ts
+└── types/           # TypeScript types
+```
 
-## Learn More
+## Available Scripts
 
-To learn more about Next.js, take a look at the following resources:
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run mock-server` - Start json-server mock API
+- `npm run lint` - Run ESLint
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## How It Works
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### State Management
 
-## Deploy on Vercel
+- **Redux Toolkit** manages UI state (search query, dragged task)
+- **React Query** handles server state (tasks) with automatic caching and refetching
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Data Flow
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Tasks are fetched from the mock API via React Query
+2. Search filters tasks in memory using Redux state
+3. Drag and drop updates task column via React Query mutation
+4. React Query automatically refetches and updates the cache
+
+### Mock API
+
+The project uses `json-server` with a local `server/db.json` file. You can modify the initial tasks by editing this file.
+
+## Building for Production
+
+```bash
+npm run build
+npm run start
+```
